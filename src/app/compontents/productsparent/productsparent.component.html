@@ -1,0 +1,33 @@
+<h1>Parent Component</h1>
+<div class="row">
+    Search Category: <select class="form-select" id="inputGroupSelect02" [(ngModel)]="filterproducts" > 
+        <option value="" selected> All product...</option>
+        <option value="Smart Phone"> Smart Phone </option>
+        <option value="Laptop"> Laptop</option>
+        <option value="Skin Care"> Skin Care </option>
+    </select>
+
+</div>
+<app-product [filterproducts]="filterproducts"(addchildEvent)="getCartItem($event)"></app-product>
+
+<h1>Cart Items</h1>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Product Name</th>
+        <th scope="col">Product Price</th>
+        <th scope="col">Product quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+        @for(item of cart ;track item.id){
+           <tr>
+               <td>{{item.name}}</td>
+               <td>{{item.price}}</td>
+               <td>{{item.quantity}}</td>
+           </tr>
+        }
+     
+    </tbody>
+  </table>

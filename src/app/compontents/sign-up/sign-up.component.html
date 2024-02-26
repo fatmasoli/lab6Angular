@@ -1,0 +1,164 @@
+<div class="container">
+    <div class="card mb-4">
+      <div class="card-header bg-success text-white">SignUp form</div>
+      <div class="card-body">
+        <form [formGroup]="formgroup1" (ngSubmit)="addUser()">
+          <div class="form-group row mb-2">
+            <label for="fullname" class="col-md-2 col-form-label"
+              >Full Name</label
+            >
+            <div class="col-md-8">
+              <input
+                type="text"
+                name="fullName"
+                class="form-control"
+                id="fullname"
+                formControlName="fullName"
+                placeholder="Full Name (required)"
+                required
+                minlength="3"
+                [ngClass]="{
+                  'is-invalid':
+                    (fullName?.touched || fullName?.dirty) && fullName?.invalid
+                }"
+              />
+  
+              <span class="invalid-feedback">
+                @if(fullName?.errors?.['required']){
+                <span>Full Name is required</span>
+                } @if(fullName?.errors?.['minlength']){
+                <span>at least 5 characters </span>
+                }
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label" for="emailId">Email</label>
+            <div class="col-md-8">
+              <input
+                class="form-control"
+                id="emailId"
+                type="email"
+                formControlName="email"
+                placeholder="Email (required)"
+                required
+                email
+                name="email"
+                [ngClass]="{
+                    'is-invalid':
+                      (email?.touched || email?.dirty) && email?.invalid
+                  }"
+              />
+                <span class="invalid-feedback"> 
+                    @if(email?.errors?.['required']){
+                        <span>Email is Required </span>
+                        }
+                </span>
+            </div>
+          </div>
+
+
+          <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label" for="password"
+              >Password</label
+            >
+            <div class="col-md-8">
+              <input
+                class="form-control"
+                id="password"
+                type="password"
+                formControlName="password"
+                placeholder="password (required)"
+                required
+                minlength="6"
+                name="password"
+                [ngClass]="{
+                    'is-invalid':
+                      (password?.touched || password?.dirty) && password?.invalid
+                  }"
+              />
+            
+              <span class="invalid-feedback"> 
+                @if(password?.errors?.['required']){
+                    <span>password is Required </span>
+                } @if(password?.errors?.['minlength']){
+                    <span>password at least 6 characters</span>
+                    }
+              </span>
+            </div>
+          </div>
+          
+         <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label">Phone Number</label>
+            <div class="col-sm-8" formArrayName="mobile">
+              @for(control of mobile.controls;track $index){
+              <div [formGroupName]="$index">
+                <div class="row mb-2">
+                    <div class="col-sm-4">
+                countrycode:
+                <input type="text" formControlName="countrycode" class="form-control" placeholder="Country Code" />
+                </div>
+                <div class="col-sm-6">
+                phoneNumber:
+                <input type="text" formControlName="phoneNumber" class="form-control" placeholder="Phone Number" />
+                </div>
+                <div class="col-sm-2">
+                <button class="btn btn-danger" *ngIf="$index >0"  (click)="removephoneInput($index)">
+                  Delete
+                </button>
+            </div>
+              </div>  
+              </div>           
+              }
+            </div>
+            <div class="row mt-3"> 
+                <div class="col-md-6">
+                  <button class="btn  btn-success px-5" (click)="addPhone()">  Add Phone  </button>
+                </div>
+              </div>
+         </div>
+    
+
+          <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label">Address</label>
+            <div formArrayName="address">
+              @for(control of address.controls;track $index){
+              <div [formGroupName]="$index">
+                city Name:
+                <input type="text" formControlName="city" />
+                street:
+                <input type="text" formControlName="street" />
+                Postal code:
+                <input type="text" formControlName="postalcode" />
+                <button class="btn btn-danger"  (click)="removeAddressInput($index)">
+                  Delete
+                </button>
+              </div>             
+              }
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6"> 
+                  <button class="btn btn-success px-5" (click)="addAddress()">Add Address</button> 
+                </div>
+              </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-12 text-center"> 
+              <button type="submit" class="btn btn-lg btn-success px-5" [disabled]="!formgroup1.valid">Submit</button> 
+            </div>
+          </div>
+        
+        </form>
+      </div>
+    </div>
+  
+    <p>{{formgroup1.value | json}}</p>
+
+    <span>Do you have any account?</span>
+    <a class="btn btn-info " routerLink="/login">LogIn</a>
+  </div>
+  
+
+   

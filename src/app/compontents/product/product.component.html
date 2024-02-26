@@ -1,0 +1,53 @@
+
+<div class="container">
+    <div class="row">
+        
+        <p>Credit Card Number: {{ "1234567890123456" | creditCardFormatter }}</p>
+        <div>
+      
+            <h1>Store Name: {{store1.name}}</h1>
+            <h4>Branches: {{store1.branches}}</h4>
+            <img *ngIf="IsPurshased" src="{{store1.logo}}" width="150" height="150"><br>
+            <h3 *ngIf="!IsPurshased">Thanks for purchasing from our store, {{ClientName}}!</h3>
+            <br><br>
+            <button class="btn btn-success" (click)="toggleImage()">Buy</button>
+        
+        </div>
+        
+    
+
+    <h2>{{purchaseDate|date:'medium'}}</h2>
+        @for(item of filterproduct ; track item.id){
+        <div class="col-sm-3 mb-4 mt-4" appProductCard [routerLink]="['/proddet',item.id]">
+
+            <img src={{item.image}} class="img-fluid" > 
+            <h4>{{item.name |uppercase}}</h4>
+            <h5 [appTexthighlight] ="myhighLight" defaultColor="pink">{{item.category}}</h5>
+            <!-- <h2>{{purchaseDate|date}}</h2> -->
+            <!-- <h4 [style.color]="item.price < 200 ?'green': 'black'">{{item.price|currency}}</h4> -->
+            <h4 class="text-decoration-line-through"> price: {{item.price}} </h4>
+            <h4 > price: {{item.price | discount:20 | currency}} </h4>
+            <h3 [class.bg-warning]="item.quantity == 1" [class.bg-white]="item.quantity >1">
+    
+        @switch (item.quantity){
+            @case(1) {last one item} 
+            @case (0) {out of stock}
+            @case (2) {last two items}
+            @default {in stock : {{item.quantity}}}
+        }
+        </h3>
+            
+       <br><br>
+          <button class="btn btn-success ms-1" [disabled]="item.quantity == 0" (click)="addToCart(item)" (click)="decreaseQuantity(item)" [disabled]="item.quantity == 0">Add to cart <i class="fa-solid fa-cart-shopping"></i></button>
+                </div>
+              
+    
+    }
+    
+    @empty{
+        <h2> No Products Founded </h2>
+    }
+    </div>
+    </div>
+    <br><hr>
+   

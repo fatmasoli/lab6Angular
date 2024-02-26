@@ -1,0 +1,98 @@
+{
+  "products": [
+    {
+      "id": "22",
+      "name": "SunBlock",
+      "price": 5000,
+      "category": "Skine Care"
+    },
+    {
+      "id": "8bb0",
+      "name": "ITI",
+      "price": 2000,
+      "category": "Smart Phone"
+    },
+    {
+      "id": "dacb",
+      "name": "rjr",
+      "price": 20
+    },
+    {
+      "id": "bfc3",
+      "name": "bbbb",
+      "price": 1111,
+      "category": "Smart Phone"
+    },
+    {
+      "id": "dc55",
+      "name": "hhh",
+      "price": 22222,
+      "category": "Smart Phone"
+    },
+    {
+      "id": "bc7e",
+      "name": "hhh",
+      "price": 22222,
+      "category": "Smart Phone"
+    },
+    {
+      "id": "9ddf",
+      "price": 78,
+      "name": "jjnjn",
+      "category": "Smart Phone"
+    },
+    {
+      "id": "e093",
+      "name": "Mdhhd",
+      "price": 200,
+      "category": "Laptop"
+    },
+    {
+      "id": "8bb0",
+      "name": "ITI",
+      "price": 2000,
+      "category": "Smart Phone"
+    }
+  ],
+  "users": [
+    {
+      "id": "a0ee",
+      "fullName": "FatmaSoliman",
+      "password": "fatma12soliman",
+      "email": "fatma12soliman@gmail.com",
+      "mobile": [
+        {
+          "countrycode": "Egypt",
+          "phoneNumber": "01147733231"
+        }
+      ],
+      "address": []
+    },
+    {
+      "id": "1e3e",
+      "fullName": "ShroukSoliman",
+      "password": "shrouk12soliman",
+      "email": "shrouk12soliman@gmail.com",
+      "mobile": [
+        {
+          "countrycode": "Egypt",
+          "phoneNumber": "01147733231"
+        }
+      ],
+      "address": []
+    },
+    {
+      "id": "c2fe",
+      "fullName": "MohammedSoliman",
+      "password": "mo12soliman",
+      "email": "mo12soliman@gmail.com",
+      "mobile": [
+        {
+          "countrycode": "Egypt",
+          "phoneNumber": "01156688432"
+        }
+      ],
+      "address": []
+    }
+  ]
+}

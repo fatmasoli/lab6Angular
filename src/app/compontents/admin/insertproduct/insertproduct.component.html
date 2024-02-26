@@ -1,0 +1,118 @@
+<h2>Add Product</h2>
+<div class="container">
+    <div class="card mb-4">
+      <div class="card-header"> {{ updateDone ? "Update Product" : "Add Product" }} </div>
+      <div class="card-body">
+        <form #FormProduct="ngForm" (ngSubmit)="updateDone ? updateProduct() : addProduct()">
+          <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label" for="emailId">Product Name</label>
+            <div class="col-md-8">
+              <input
+                class="form-control"
+                id="name"
+                type="text"
+                placeholder="Name (required)"
+                required
+                Name
+                name="name"
+                [(ngModel)]="product.name "
+                #nameInput="ngModel"
+                [ngClass]="{'is-invalid':(nameInput.touched||nameInput.dirty) &&!nameInput.valid }"
+                minlength="3"
+              />
+          
+              <span class="invalid-feedback"> 
+                @if(nameInput.errors?.['required']){
+                  <span>Name is required</span>
+                }
+                @if(nameInput.errors?.['name']){
+                  <span>Name is Not a Valid Name</span>
+                }
+              </span>
+            </div>
+          </div>
+          <div class="form-group row mb-2">
+            <label for="Price" class="col-md-2 col-form-label">Price</label>
+            <div class="col-md-8">
+              <input
+                class="form-control"
+                id="price"
+                type="number"
+                placeholder="Price (required)"
+                required
+                Name
+                name="price"
+                [(ngModel)]="product.price "
+                #priceInput="ngModel"
+                [ngClass]="{'is-invalid':(priceInput.touched||priceInput.dirty) &&!priceInput.valid }"
+              />
+              <span class="invalid-feedback"> 
+                @if(priceInput.errors?.['required']){
+                  <span>Price is required</span>
+                }
+                @if(priceInput.errors?.['price']){
+                  <span>price is Not a Valid price</span>
+                }
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group row mb-2">
+            <label for="category" class="col-md-2 col-form-label">Category</label>
+            <div class="col-md-8">
+              <select class="form-select" id="category" name="category"  [(ngModel)]="product.category" #categoryInput="ngModel"  [ngClass]="{'is-invalid':(categoryInput.touched||categoryInput.dirty) &&!categoryInput.valid }">
+                <option value="" selected> All product...</option>
+                <option value="Smart Phone"> Smart Phone </option>
+                <option value="Laptop"> Laptop</option>
+                <option value="Skin Care"> Skin Care </option>
+              </select>
+            </div>
+          </div>
+          <button
+          type="submit"
+          class="btn btn-success"
+          [disabled]="!FormProduct.valid"
+        >
+        {{ updateDone ? "Update Product" : "Add Product" }}
+        </button>
+      
+        </form>
+      </div>
+    </div>
+    <a class="btn btn-success btn-sm" routerLink="/order" >Add Product</a>
+
+  </div>
+
+  <br><br>
+  <h1>Product Items</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Product id</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Product Price</th>
+            <th scope="col">Product category</th>       
+            <th scope="col">EDIT</th>       
+            <th scope="col">Delete</th>       
+        </tr>
+    </thead>
+    <tbody>
+        @for(item of insertproduct ;track item.id){
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.price }}</td>
+            <td>{{ item.category }}</td>
+            <button (click)="updateProductBtn(item.id)" class="btn btn-success"> Update</button>
+            <td><button class="btn btn-danger" (click)="deleteprod(item.id)">Delete Product</button></td>
+        </tr>
+    }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="2"><strong>Total products:</strong></td>
+            <!-- <td><strong>{{ allproducts()}}</strong></td> -->
+        </tr>
+    </tfoot>
+
+</table>

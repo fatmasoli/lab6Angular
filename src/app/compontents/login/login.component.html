@@ -1,0 +1,79 @@
+  
+<div class="container">
+    <div class="card mb-4">
+      <div class="card-header bg-success text-white">Login Form </div>
+      <div class="card-body">
+        <form [formGroup]="formgroup2">
+          <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label" for="emailId">Email</label>
+            <div class="col-md-8">
+              <input
+                class="form-control"
+                id="emailId"
+                type="email"
+                placeholder="Email (required)"
+                formControlName="email"
+                required
+                email
+                name="email"
+                [ngClass]="{
+                    'is-invalid':
+                      (email?.touched || email?.dirty) && email?.invalid
+                  }"
+              />
+              <span class="invalid-feedback"> 
+                @if(email?.errors?.['required']){
+                    <span>Email is Required </span>
+                    }
+            </span>
+            </div>
+          </div>
+          <div class="form-group row mb-2">
+            <label for="password" class="col-md-2 col-form-label"
+              >Password</label
+            >
+            <div class="col-md-8">
+              <input
+                type="password"
+                name="password"
+                class="form-control"
+                id="password"
+                formControlName="password"
+                placeholder="Password (required)"
+                required
+                minlength="6"
+                [ngClass]="{
+                    'is-invalid':
+                      (password?.touched || password?.dirty) && password?.invalid
+                  }"
+              />
+  
+              <span class="invalid-feedback"> 
+                @if(password?.errors?.['required']){
+                    <span>password is Required </span>
+                } @if(password?.errors?.['minlength']){
+                    <span>password at least 6 characters</span>
+                    }
+              </span>
+
+            </div>
+          </div>
+  
+          <button
+            type="submit"
+            class="btn btn-success"
+            [disabled]="!formgroup2.valid"
+            routerLink="/home" >
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+    <span>Don't have an Account?</span>
+     <a class="btn btn-success btn-sm" routerLink="/signup" >SignUp</a>
+  </div>
+  
+  <p>form valid :{{formgroup2.valid}} </p>
+
+
+
